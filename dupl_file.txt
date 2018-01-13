@@ -1,0 +1,15 @@
+=============  LIST OF FILES  =============
+
+Note: Duplicate files have been clubbed together.
+
+Total File Count: 5
+Distinct Image Count: 1
+Scanned Directory: /home/vishal/Desktop/dupl/
+
+File No. 1
+	_gaze (another copy).gif /home/vishal/Desktop/dupl/_gaze (another copy).gif 842.165kB
+	_gaze (3rd copy).gif /home/vishal/Desktop/dupl/_gaze (3rd copy).gif 842.165kB
+	_gaze (copy).gif /home/vishal/Desktop/dupl/_gaze (copy).gif 842.165kB
+	_gaze.gif /home/vishal/Desktop/dupl/_gaze.gif 842.165kB
+	_gaze (4th copy).gif /home/vishal/Desktop/dupl/_gaze (4th copy).gif 842.165kB
+
