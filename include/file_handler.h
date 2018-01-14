@@ -2,7 +2,6 @@
 #define FILE_HANDLER_H_
 
 #include <string>
-#include <fstream>
 #include <list>
 #include <map>
 

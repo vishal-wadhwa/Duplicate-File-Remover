@@ -1,0 +1,8 @@
+=============  LIST OF FILES  =============
+
+Note: Duplicate files have been clubbed together.
+
+Total File Count: 0
+Distinct Image Count: 0
+Scanned Directory: /home/vishal/Desktop/dupl/
+
