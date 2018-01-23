@@ -47,14 +47,14 @@ file_data::file_data(const std::string &name,
 	hash = md5gen();
 }
 
-file_handler::file_handler(const std::string &path) : directory(path) {}
+file_handler::file_handler(const std::string &path) : directory(path), tot_file_count(0) {}
 
-file_handler::file_handler() {}
+file_handler::file_handler() : directory(""), tot_file_count(0) {}
 
 void file_handler::add_extension(const std::string &ext)
 {
 	if (!ext.empty())
-		exten.insert(exten.end(), "." + ext);
+		exten.insert("." + ext);
 }
 
 bool file_handler::set_directory(const std::string &path)
@@ -77,7 +77,6 @@ bool file_handler::load_directory()
 {
 	try
 	{
-
 		if (exten.empty())
 			throw std::string("Extensions not set.");
 		if (directory.empty())
@@ -109,7 +108,7 @@ void file_handler::init_dir_load()
 		const path &curp = it->path();
 		if (is_regular_file(curp) &&
 			curp.has_extension() &&
-			find(exten.begin(), exten.end(), curp.extension().string()) != exten.end())
+			exten.find(curp.extension().string()) != exten.end())
 			++tot_file_count;
 	}
 
@@ -127,7 +126,7 @@ void file_handler::init_dir_load()
 		const path &curp = it->path();
 		if (is_regular_file(curp) &&
 			curp.has_extension() &&
-			find(exten.begin(), exten.end(), curp.extension().string()) != exten.end())
+			exten.find(curp.extension().string()) != exten.end())
 		{
 			++curf;
 

@@ -10,7 +10,7 @@ int main()
     ff.load_directory();
 
     ff.generate_list();
-    // ff.remove_in_place();
+    ff.remove_in_place();
     return 0;
 }
 

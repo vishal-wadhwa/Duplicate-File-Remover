@@ -2,7 +2,10 @@
 
 Note: Duplicate files have been clubbed together.
 
-Total File Count: 0
-Distinct Image Count: 0
+Total File Count: 1
+Distinct Image Count: 1
 Scanned Directory: /home/vishal/Desktop/dupl/
+
+File No. 1
+	_gaze.gif /home/vishal/Desktop/dupl/_gaze.gif 842.165kB
 

@@ -18,6 +18,8 @@ $(ODIR)/%.o: %.cpp $(DEPS)
 main: $(OBJ)
 	$(CC) -o $@ $^ $(CFLAGS) $(LIBS)
 
+run:
+	./main
 .PHONY: clean
 
 clean:

@@ -2,6 +2,7 @@
 #define FILE_HANDLER_H_
 
 #include <string>
+#include <set>
 #include <list>
 #include <map>
 
@@ -18,9 +19,9 @@ struct file_data
 class file_handler
 {
 	std::map<std::string, std::list<file_data>> file_map;
-	size_t tot_file_count;
 	std::string directory;
-	std::list<std::string> exten;
+	size_t tot_file_count;
+	std::set<std::string> exten;
 	void init_dir_load();
 
   public:
