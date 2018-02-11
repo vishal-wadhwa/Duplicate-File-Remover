@@ -1,25 +1,24 @@
-CC = g++ 
+CXX = g++ 
 IDIR = ../include
 ODIR = obj
 LDIR = ../lib
-TDIR = ../tests
-LIBS = -lcrypto -lboost_filesystem -lboost_system
-CFLAGS = -I$(IDIR) -std=c++14 -Wall -pedantic -Wextra
+LDFLAGS = -lcrypto -lboost_filesystem -lboost_system
+CXXFLAGS = -I$(IDIR) -std=c++14 -Wall -pedantic -Wextra
 
-_DEPS = file_handler.h
+_DEPS = file_handler.h file_hash.h
 DEPS = $(patsubst %, $(IDIR)/%, $(_DEPS)) #DEPENDENCIES
 
-_OBJ = main.o file_handler.o
+_OBJ = file_hash.o file_handler.o main.o
 OBJ = $(patsubst %, $(ODIR)/%, $(_OBJ))
 
-$(ODIR)/%.o: %.cpp $(DEPS)
-	$(CC) -c -o $@ $< $(CFLAGS) $(LIBS)
+$(ODIR)/%.o: %.cpp $(DEPS) #DEPS ensures that if DEPS change then recompile
+	$(CXX) -c -o $@ $< $(CXXFLAGS)
 
 main: $(OBJ)
-	$(CC) -o $@ $^ $(CFLAGS) $(LIBS)
+	$(CXX) -o $@ $^ $(CXXFLAGS) $(LDFLAGS)
 
 run:
-	./main
+	./test
 .PHONY: clean
 
 clean:

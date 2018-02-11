@@ -1,84 +1,53 @@
 #include "../include/file_handler.h"
+#include "../include/file_hash.h"
 #include <boost/filesystem.hpp>
-#include <openssl/md5.h>
-#include <iomanip>
-#include <sstream>
 #include <fstream>
 #include <iostream>
+#include <functional>
+#include <iomanip>
+#include <queue>
 
-std::string file_data::md5gen(const size_t &BUFFER_LENGTH)
+dfr::file_data::file_data(const std::string &name,
+						  const uintmax_t &size,
+						  const std::string &path) : name(name), path(path), size(size)
 {
-	std::ifstream fi(path, std::ios::binary);
-
-	if (!fi.is_open())
-	{
-		std::cerr << "Could not open: " + path << std::endl;
-		return "";
-	}
-
-	char *buffer = new char[BUFFER_LENGTH];
-	unsigned char result[MD5_DIGEST_LENGTH];
-
-	MD5_CTX ctx;
-	MD5_Init(&ctx);
-
-	while (fi)
-	{
-		fi.read(buffer, BUFFER_LENGTH);
-		MD5_Update(&ctx, buffer, fi.gcount());
-	}
-
-	MD5_Final(result, &ctx);
-
-	std::ostringstream sout;
-	sout << std::hex << std::setfill('0');
-	for (auto c : result)
-		sout << std::setw(2) << (int)c;
-
-	fi.close();
-	delete buffer;
-	return sout.str();
+	hash = dfr::hash::MD5(path);
 }
 
-file_data::file_data(const std::string &name,
-					 const uintmax_t &size,
-					 const std::string &path) : name(name), path(path), size(size)
-{
-	hash = md5gen();
-}
+dfr::file_handler::file_handler(const std::string &path) : directory(path), hashed_file_ct(0) {}
 
-file_handler::file_handler(const std::string &path) : directory(path), tot_file_count(0) {}
+dfr::file_handler::file_handler() : directory(""), hashed_file_ct(0) {}
 
-file_handler::file_handler() : directory(""), tot_file_count(0) {}
-
-void file_handler::add_extension(const std::string &ext)
+void dfr::file_handler::add_extension(const std::string &ext)
 {
 	if (!ext.empty())
 		exten.insert("." + ext);
 }
 
-bool file_handler::set_directory(const std::string &path)
+void dfr::file_handler::set_directory(const std::string &path)
 {
 	directory = path;
-	return !path.empty();
 }
 
-size_t file_handler::total_file_count()
+size_t dfr::file_handler::total_hashed_file_count()
 {
-	return tot_file_count;
+	return hashed_file_ct;
 }
 
-size_t file_handler::distinct_file_count()
+size_t dfr::file_handler::distinct_file_count()
 {
 	return file_map.size();
 }
 
-bool file_handler::load_directory()
+void dfr::file_handler::clean() {
+	file_map.clear();
+	hashed_file_ct = 0;
+}
+
+bool dfr::file_handler::load_directory()
 {
 	try
 	{
-		if (exten.empty())
-			throw std::string("Extensions not set.");
 		if (directory.empty())
 			throw std::string("Directory not set.");
 		boost::filesystem::path p(directory);
@@ -89,80 +58,137 @@ bool file_handler::load_directory()
 	}
 	catch (const std::string &e)
 	{
+#ifndef DEBUG
 		std::cerr << e << std::endl;
+#endif
 		return false;
 	}
 	return true;
 }
 
-void file_handler::init_dir_load()
+size_t dfr::file_handler::dir_traverse_routine(
+	const std::function<
+		void(const size_t &,
+			 const boost::filesystem::path &)> &fx)
 {
 	using namespace boost::filesystem;
-	using rdit = recursive_directory_iterator;
+	using dit = directory_iterator;
 
 	size_t curf = 0;
 	path p(directory);
 
-	for (rdit it(p); it != rdit(); ++it)
-	{
-		const path &curp = it->path();
-		if (is_regular_file(curp) &&
-			curp.has_extension() &&
-			exten.find(curp.extension().string()) != exten.end())
-			++tot_file_count;
-	}
+	std::queue<path> dirs;
+	dirs.push(p);
 
-	if (total_file_count() == 0)
+	while (!dirs.empty())
 	{
+		const path &curd = dirs.front();
+		dit it;
+
+		//can't access directory check
+		try
+		{
+			it = dit(curd);
+		}
+		catch (const filesystem_error &)
+		{
+			it = dit();
+		}
+		dirs.pop();
+
+		while (it != dit())
+		{
+
+			const path &curp = it->path();
+			try
+			{
+				if (is_regular_file(curp))
+				{
+					if (exten.empty() || (curp.has_extension() &&
+										  exten.find(curp.extension().string()) != exten.end()))
+					{
+						++curf;
+						fx(curf, curp);
+					}
+				}
+				else if (!is_symlink(curp) && is_directory(curp))
+					dirs.push(curp);
+			}
+			catch (const filesystem_error &)
+			{
+			}
+			++it;
+		}
+	}
+	return curf;
+}
+
+void dfr::file_handler::init_dir_load()
+{
+	using namespace boost::filesystem;
+	clean();
+	size_t file_ct = 0, upd_inter = 0;
+	const auto dum = [](const size_t &curf, const path &curp) {
+		//kinda useless, only to get total_hashed_file_count
+		//suppress compiler warning of unused variable.
+		(void)curf;
+		(void)curp;
+	};
+	file_ct = dir_traverse_routine(dum);
+
+	if (file_ct == 0)
+	{
+#ifndef DEBUG
 		std::cerr << "No matching file found.\n";
+#endif
 		return;
 	}
 
-	size_t upd_inter = cbrt(total_file_count());
+	upd_inter = cbrt(file_ct);
+	const auto build = [upd_inter, file_ct, this](const size_t &curf, const path &curp) {
 
-	for (rdit it(p); it != rdit(); ++it)
-	{
-
-		const path &curp = it->path();
-		if (is_regular_file(curp) &&
-			curp.has_extension() &&
-			exten.find(curp.extension().string()) != exten.end())
+#ifndef DEBUG
+		if (curf % upd_inter == 0)
 		{
-			++curf;
-
-			if (curf % upd_inter == 0)
-			{
-				std::cout << "Computing hash for " << curf << " of "
-						  << total_file_count() << " files.       \r";
-				fflush(stdout);
-			}
-			file_data fd = file_data(
-				curp.filename().string(),
-				file_size(curp),
-				curp.is_absolute()
-					? "/" + curp.relative_path().string()
-					: curp.relative_path().string());
+			std::cout << "Checking file " << curf << " of "
+					  << file_ct << " files.       \r";
+			fflush(stdout);
+		}
+#endif
+		file_data fd = file_data(
+			curp.filename().string(),
+			file_size(curp),
+			curp.is_absolute()
+				? "/" + curp.relative_path().string()
+				: curp.relative_path().string());
+		if (!fd.hash.empty())
+		{
 			std::list<file_data> &dt = file_map[fd.hash];
 			dt.insert(dt.end(), fd);
+			++hashed_file_ct;
 		}
-	}
-	std::cout << "Computing hash for " << curf << " of " << total_file_count()
+	};
+
+	dir_traverse_routine(build);
+#ifndef DEBUG
+	std::cout << "Computed hash for " << hashed_file_ct << " of " << file_ct
 			  << " files.       \r";
 	std::cout << std::endl;
+#endif
 }
 
-void file_handler::generate_list(const std::string &out_file)
+bool dfr::file_handler::generate_list(const std::string &out_file)
 {
 	std::ofstream of(out_file);
 	try
 	{
 		if (!of.is_open())
-			throw std::string("Cannot open " + out_file);
+			throw std::string("Cannot open output file: " + out_file);
 
 		of << "=============  LIST OF FILES  =============\n\n";
 		of << "Note: Duplicate files have been clubbed together.\n\n";
-		of << "Total File Count: " << total_file_count() << "\n";
-		of << "Distinct Image Count: " << distinct_file_count() << "\n";
+		of << "Total Files Read: " << total_hashed_file_count() << "\n";
+		of << "Distinct File Count: " << distinct_file_count() << "\n";
 		of << "Scanned Directory: " << directory << "\n\n";
 
 		size_t ct = 1;
@@ -171,32 +197,45 @@ void file_handler::generate_list(const std::string &out_file)
 		{
 			std::list<file_data> &lfd = dt.second;
 			of << "File No. " << ct << std::endl;
-
+			size_t pos = 0;
 			for (file_data &fd : lfd)
 			{
-				of << '\t' << fd.name << ' ' << fd.path << ' ' << fd.size / 1024. << "kB\n";
-				if (fd.hash.empty())
-					throw std::string("Could not generate hash.");
+				of << '\t' << fd.name << ' ' << fd.path
+				   << ' ' << fd.size / 1024. << "kB " << (pos ? "| [TBD]" : "")
+				   << '\n';
+				++pos;
 			}
+
 			of << std::endl;
 			++ct;
 		}
 	}
 	catch (const std::string &e)
 	{
+#ifndef DEBUG
 		std::cerr << e << std::endl;
+#endif
+		return false;
 	}
+	return true;
 }
 
-void file_handler::remove_in_place()
+bool dfr::file_handler::remove_in_place()
 {
 	using namespace boost::filesystem;
-	for (auto &dt : file_map)
+	bool ok = true;
+	for (const auto &dt : file_map)
 	{
-		std::list<file_data> &lfd = dt.second;
-		std::list<file_data>::iterator it = lfd.begin();
+		const std::list<file_data> &lfd = dt.second;
+		std::list<file_data>::const_iterator it = lfd.begin();
 		for (++it; it != lfd.end(); ++it)
 			if (!remove(path(it->path)))
+			{
+#ifndef DEBUG
 				std::cerr << "Could not remove " << it->path << '\n';
+#endif
+				ok = false;
+			}
 	}
+	return ok;
 }

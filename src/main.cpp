@@ -2,7 +2,7 @@
 
 int main()
 {
-    file_handler ff("/home/vishal/Desktop/dupl/");
+    dfr::file_handler ff("../");
 
     ff.add_extension("png");
     ff.add_extension("jpg");
@@ -10,8 +10,13 @@ int main()
     ff.load_directory();
 
     ff.generate_list();
-    ff.remove_in_place();
+    // ff.remove_in_place();
     return 0;
 }
 
-//g++ test.cpp file_handler.cpp -o out -lcrypto -std=c++14 -lboost_system -lboost_filesystem -Wall -pedantic -Wextra
+//features to be added
+//-set recursive depth
+//-set exclude directory
+//-set only some directory
+//synchronization: two objects modifying same directory.
+//interactive

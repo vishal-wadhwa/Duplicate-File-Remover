@@ -1,14 +1,14 @@
+#ifndef FILE_HASH_
+#define FILE_HASH_
 #include <string>
-enum HASH_TYPE
-{
-    MD5,
-    SHA1
-};
 
-//using different type of hashes
-std::string compute_hash(std::string &path,
-                         const size_t &BUFFER_SIZE = 1 << 15,
-                         HASH_TYPE h)
+namespace dfr
 {
-    
+class hash
+{
+  public:
+    static std::string MD5(const std::string &path, const size_t &BUFFER_LENGTH = 1 << 15);
+};
 }
+
+#endif

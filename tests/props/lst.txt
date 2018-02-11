@@ -1,0 +1,55 @@
+=============  LIST OF FILES  =============
+
+Note: Duplicate files have been clubbed together.
+
+Total Files Read: 17
+Distinct File Count: 15
+Scanned Directory: .
+
+File No. 1
+	unit_tests.cpp ./unit_tests.cpp 3.679kB 
+
+File No. 2
+	a.txt ./props/a.txt 0.004kB 
+	b.txt ./props/b.txt 0.004kB | [TBD]
+	c.txt ./props/c.txt 0.004kB | [TBD]
+
+File No. 3
+	unit_tests.h ./unit_tests.h 0.980kB 
+
+File No. 4
+	test.o ./obj/test.o 83.141kB 
+
+File No. 5
+	test ./test 279.086kB 
+
+File No. 6
+	unit_tests.o ./obj/unit_tests.o 239.609kB 
+
+File No. 7
+	lst.txt ./props/lst.txt 0.957kB 
+
+File No. 8
+	blah.blah ./props/blah.blah 0.027kB 
+
+File No. 9
+	Makefile ./Makefile 0.896kB 
+
+File No. 10
+	file_handler.o ./obj/file_handler.o 315.617kB 
+
+File No. 11
+	abc ./props/abc 0.237kB 
+
+File No. 12
+	_gaze (8th copy).gif ./props/_gaze (8th copy).gif 842.165kB 
+
+File No. 13
+	file_hash.o ./obj/file_hash.o 9.117kB 
+
+File No. 14
+	test.cpp ./test.cpp 0.659kB 
+
+File No. 15
+	blank.file ./props/blank.file 0.000kB 
+
