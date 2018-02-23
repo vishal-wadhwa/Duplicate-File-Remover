@@ -20,6 +20,19 @@ A command line utility that {\bfseries recursively} scans the set directory to f
 Caution\+: As of now, there is no way to select which of the duplicate files will be preserved. The selection happens on the order in which they are loaded into {\ttfamily std\+::map}. The first file is the one which is preserved. \end{quote}
 
 
+\subsection*{\label{_dep}%
+Dependencies\+:}
+
+
+\begin{DoxyEnumerate}
+\item For main program\+:
+
+{\ttfamily sudo apt-\/get install libssl-\/dev libboost-\/filesystem-\/dev libboost-\/system-\/dev}
+\item For tests, apart from the dependencies for main program\+:
+
+{\ttfamily sudo apt-\/get install libcppunit-\/dev}
+\end{DoxyEnumerate}
+
 \subsection*{Downloading and Building}
 
 
@@ -29,8 +42,8 @@ Caution\+: As of now, there is no way to select which of the duplicate files wil
 {\ttfamily git clone \href{https://github.com/vishal-wadhwa/Duplicate-File-Remover.git}{\tt https\+://github.\+com/vishal-\/wadhwa/\+Duplicate-\/\+File-\/\+Remover.\+git}}
 \item Change directory to src\+:
 
-{\ttfamily cd src}
-\item Build project using Make utility\+:
+{\ttfamily cd Duplicate-\/\+File-\/\+Remover/src}
+\item Build project using Make utility (assuming you\textquotesingle{}ve downloaded the \href{#dep}{\tt dependencies})\+:
 
 {\ttfamily make main}
 \item Run it (See \href{#use}{\tt Usage})\+:
@@ -42,10 +55,10 @@ Caution\+: As of now, there is no way to select which of the duplicate files wil
 
 
 \begin{DoxyEnumerate}
-\item From the root directory of the project go to test directory\+:
+\item From the root directory of the project go to tests directory\+:
 
-{\ttfamily cd test}
-\item Build tests using Make utility.
+{\ttfamily cd Duplicate-\/\+File-\/\+Remover/tests}
+\item Build tests using Make utility (assuming you\textquotesingle{}ve downloaded the \href{#dep}{\tt dependencies})\+:
 
 {\ttfamily make test}
 \item Run them tests, bruh\+:

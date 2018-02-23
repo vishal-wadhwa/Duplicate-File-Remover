@@ -17,6 +17,15 @@ __Future Plans:__
 
 > Caution: As of now, there is no way to select which of the duplicate files will be preserved. The selection happens on the order in which they are loaded into `std::map`. The first file is the one which is preserved.
 
+## <a name="dep">Dependencies</a>:
+1. For main program:
+
+    `sudo apt-get install libssl-dev libboost-filesystem-dev libboost-system-dev`
+
+2. For tests, apart from the dependencies for main program:
+
+    `sudo apt-get install libcppunit-dev`
+
 ## Downloading and Building
 1. Clone the project:
 
@@ -26,7 +35,7 @@ __Future Plans:__
 
     `cd Duplicate-File-Remover/src`
 
-3. Build project using Make utility:
+3. Build project using Make utility (assuming you've downloaded the [dependencies](#dep)):
 
     `make main`
 
@@ -39,7 +48,7 @@ __Future Plans:__
 
     `cd Duplicate-File-Remover/tests`
 
-2. Build tests using Make utility.
+2. Build tests using Make utility (assuming you've downloaded the [dependencies](#dep)):
 
     `make test`
 

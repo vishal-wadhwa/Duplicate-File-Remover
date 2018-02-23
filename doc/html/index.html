@@ -95,15 +95,24 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <blockquote class="doxtable">
 <p>Caution: As of now, there is no way to select which of the duplicate files will be preserved. The selection happens on the order in which they are loaded into <code>std::map</code>. The first file is the one which is preserved. </p>
 </blockquote>
+<h2><a class="anchor" id="dep"></a>Dependencies:</h2>
+<ol type="1">
+<li><p class="startli">For main program:</p>
+<p class="startli"><code>sudo apt-get install libssl-dev libboost-filesystem-dev libboost-system-dev</code></p>
+</li>
+<li><p class="startli">For tests, apart from the dependencies for main program:</p>
+<p class="startli"><code>sudo apt-get install libcppunit-dev</code></p>
+</li>
+</ol>
 <h2>Downloading and Building</h2>
 <ol type="1">
 <li><p class="startli">Clone the project:</p>
 <p class="startli"><code>git clone <a href="https://github.com/vishal-wadhwa/Duplicate-File-Remover.git">https://github.com/vishal-wadhwa/Duplicate-File-Remover.git</a></code></p>
 </li>
 <li><p class="startli">Change directory to src:</p>
-<p class="startli"><code>cd src</code></p>
+<p class="startli"><code>cd Duplicate-File-Remover/src</code></p>
 </li>
-<li><p class="startli">Build project using Make utility:</p>
+<li><p class="startli">Build project using Make utility (assuming you've downloaded the <a href="#dep">dependencies</a>):</p>
 <p class="startli"><code>make main</code></p>
 </li>
 <li><p class="startli">Run it (See <a href="#use">Usage</a>):</p>
@@ -112,10 +121,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </ol>
 <h2>Testing</h2>
 <ol type="1">
-<li><p class="startli">From the root directory of the project go to test directory:</p>
-<p class="startli"><code>cd test</code></p>
+<li><p class="startli">From the root directory of the project go to tests directory:</p>
+<p class="startli"><code>cd Duplicate-File-Remover/tests</code></p>
 </li>
-<li><p class="startli">Build tests using Make utility.</p>
+<li><p class="startli">Build tests using Make utility (assuming you've downloaded the <a href="#dep">dependencies</a>):</p>
 <p class="startli"><code>make test</code></p>
 </li>
 <li><p class="startli">Run them tests, bruh:</p>
