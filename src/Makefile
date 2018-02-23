@@ -4,6 +4,7 @@ ODIR = obj
 LDIR = ../lib
 LDFLAGS = -lcrypto -lboost_filesystem -lboost_system
 CXXFLAGS = -I$(IDIR) -std=c++14 -Wall -pedantic -Wextra
+DIR_GUARD = @mkdir -p $(@D)
 
 _DEPS = file_handler.h file_hash.h
 DEPS = $(patsubst %, $(IDIR)/%, $(_DEPS)) #DEPENDENCIES
@@ -12,6 +13,7 @@ _OBJ = file_hash.o file_handler.o main.o
 OBJ = $(patsubst %, $(ODIR)/%, $(_OBJ))
 
 $(ODIR)/%.o: %.cpp $(DEPS) #DEPS ensures that if DEPS change then recompile
+	$(DIR_GUARD)
 	$(CXX) -c -o $@ $< $(CXXFLAGS)
 
 main: $(OBJ)

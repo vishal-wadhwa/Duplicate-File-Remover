@@ -6,6 +6,7 @@ TDIR = ../tests
 SRC = ../src
 LDFLAGS = -lcrypto -lboost_filesystem -lboost_system -lcppunit
 CXXFLAGS = -I$(IDIR) -std=c++14 -Wall -pedantic -Wextra -DDEBUG
+DIR_GUARD = @mkdir -p $(@D)
 
 _DEPS = file_handler.h file_hash.h
 DEPS = $(patsubst %, $(IDIR)/%, $(_DEPS)) #DEPENDENCIES
@@ -20,9 +21,11 @@ OBJ = $(patsubst %, $(ODIR)/%, $(_OBJ))
 # DEPS_TEST = $(patsubst %, $(TDIR)/%, $(_DEPS_TEST))
 
 $(ODIR)/%.o: $(SRC)/%.cpp $(DEPS) #DEPS ensures that if DEPS change then recompile
+	$(DIR_GUARD)
 	$(CXX) -c -o $@ $< $(CXXFLAGS)
 
 $(ODIR)/%.o: $(TDIR)/%.cpp $(DEPS_TEST)
+	$(DIR_GUARD)	
 	$(CXX) -c -o $@ $< $(CXXFLAGS)
 
 # $(ODIR)/test.o: test.cpp
