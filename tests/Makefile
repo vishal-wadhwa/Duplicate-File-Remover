@@ -37,4 +37,4 @@ run:
 .PHONY: clean
 
 clean:
-	/bin/rm -f $(ODIR)/*.o
+	/bin/rm -f $(ODIR)/*.o test

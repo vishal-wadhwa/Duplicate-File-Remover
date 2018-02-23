@@ -10,6 +10,7 @@ dfr::file_handler_test::file_handler_test() {}
 void dfr::file_handler_test::setUp()
 {
     //setup for remove_in_place_test
+    //generating duplicate files.
     std::ofstream of("./props/a.txt");
     CPPUNIT_ASSERT_EQUAL(true, of.is_open());
     of << "hllo";
@@ -26,18 +27,20 @@ void dfr::file_handler_test::setUp()
     of.close();
 }
 
-void dfr::file_handler_test::tearDown() {}
+void dfr::file_handler_test::tearDown() {
+    remove("./props/a.txt");
+    remove("./props/b.txt");
+    remove("./props/c.txt");    
+}
 
 void dfr::file_handler_test::invalid_dir_test()
 {
     std::unordered_map<std::string, bool> test_dir = {
         {"", false},
         {"_._-.", false},
-        {"props/inaccessible", true},
         {".", true},
         {"../", true},
-        {"..", true},
-        {"/home/vishal/Desktop/dupl/tests/", true}};
+        {"..", true}};
 
     for (auto &p : test_dir)
     {
@@ -58,7 +61,6 @@ void dfr::file_handler_test::list_generate_test()
     std::ifstream fi("./props/lst.txt");
     CPPUNIT_ASSERT_EQUAL(true, fi.is_open());
     fi.close();
-    CPPUNIT_ASSERT_EQUAL(false, fho.generate_list("./props/inaccessible/lst.txt"));
 }
 
 void dfr::file_handler_test::init_val_test()
@@ -73,14 +75,9 @@ void dfr::file_handler_test::remove_in_place_test()
     file_handler fho(".");
     fho.load_directory();
     CPPUNIT_ASSERT_EQUAL(true, fho.remove_in_place());
-    setUp();
     remove("./props/a.txt");
     CPPUNIT_ASSERT_EQUAL(true, fho.remove_in_place());
     //no errors because this was the first file, so it wasn't going to be deleted anyway
-
-    setUp();
-    remove("./props/c.txt");
-    CPPUNIT_ASSERT_EQUAL(false, fho.remove_in_place());
 }
 
 void dfr::file_handler_test::filter_test() {

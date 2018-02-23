@@ -122,9 +122,24 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <p class="startli"><code>./test</code></p>
 </li>
 </ol>
-<p>You should see <em>OK</em> if all the tests pass and then you can go on to using the program.;)</p>
+<p>You should see <em>OK</em> if all the tests pass and then you can go on to using the program. ;)</p>
 <h2><a class="anchor" id="use"></a>Usage</h2>
-<h3>Other command line params</h3>
+<ol type="1">
+<li>Use <code>-d</code> switch to set the directory to be scanned.</li>
+<li>Use <code>-e</code> switch to provide a list of extensions to filter the files scanned.</li>
+<li>Use <code>-l</code> switch to generate an output(log) file. If this switch is not followed by a name/path, then a default file <em>dupl_file.txt</em> is generated in the current directory.</li>
+<li>Use <code>-r</code> switch to remove the duplicates and keep only one copy.</li>
+<li>Use <code>-h</code> switch to display this help:</li>
+</ol>
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;Usage: ./main -d [DIRECTORY]</div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;or: ./main -d [DIRECTORY] -e [EXTENSIONS]...</div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;or: ./main -d [DIRECTORY] -l [OUTFILE]</div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;</div><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;Scan the provided directory and its sub-directories recursively and find duplicates.</div><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;</div><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;Not using either of -l or -r switch is pointless as no action is performed.</div><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;</div><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;-d switch is necessary to set the search directory.</div><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;</div><div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;Other switches:</div><div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    -d      provided argument is the directory to be scanned.</div><div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    -e      following arguments treated as extensions.</div><div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    -l      generate file list (default file: &quot;dupl_file.txt&quot;).</div><div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    -h      prints this help.</div><div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    -r      remove the duplicates so found.</div></div><!-- fragment --> <blockquote class="doxtable">
+<p>Note: Use <code>sudo</code> if required. </p>
+</blockquote>
+<h2>Examples</h2>
+<ol type="1">
+<li><code>./main -d ./ -l -r</code></li>
+<li><code>./main -e png jpg jpeg -d ./../ -l log.out</code></li>
+<li><code>./main -d ./ -r</code> </li>
+</ol>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

@@ -53,9 +53,48 @@ Caution\+: As of now, there is no way to select which of the duplicate files wil
 {\ttfamily ./test}
 \end{DoxyEnumerate}
 
-You should see {\itshape OK} if all the tests pass and then you can go on to using the program.;)
+You should see {\itshape OK} if all the tests pass and then you can go on to using the program. ;)
 
 \subsection*{\label{_use}%
 Usage}
 
-\subsubsection*{Other command line params}
+
+\begin{DoxyEnumerate}
+\item Use {\ttfamily -\/d} switch to set the directory to be scanned.
+\item Use {\ttfamily -\/e} switch to provide a list of extensions to filter the files scanned.
+\item Use {\ttfamily -\/l} switch to generate an output(log) file. If this switch is not followed by a name/path, then a default file {\itshape dupl\+\_\+file.\+txt} is generated in the current directory.
+\item Use {\ttfamily -\/r} switch to remove the duplicates and keep only one copy.
+\item Use {\ttfamily -\/h} switch to display this help\+:
+\end{DoxyEnumerate}
+
+
+\begin{DoxyCode}
+1 Usage: ./main -d [DIRECTORY]
+2 or: ./main -d [DIRECTORY] -e [EXTENSIONS]...
+3 or: ./main -d [DIRECTORY] -l [OUTFILE]
+4 
+5 Scan the provided directory and its sub-directories recursively and find duplicates.
+6 
+7 Not using either of -l or -r switch is pointless as no action is performed.
+8 
+9 -d switch is necessary to set the search directory.
+10 
+11 Other switches:
+12     -d      provided argument is the directory to be scanned.
+13     -e      following arguments treated as extensions.
+14     -l      generate file list (default file: "dupl\_file.txt").
+15     -h      prints this help.
+16     -r      remove the duplicates so found.
+\end{DoxyCode}
+ \begin{quote}
+Note\+: Use {\ttfamily sudo} if required. \end{quote}
+
+
+\subsection*{Examples}
+
+
+\begin{DoxyEnumerate}
+\item {\ttfamily ./main -\/d ./ -\/l -\/r}
+\item {\ttfamily ./main -\/e png jpg jpeg -\/d ./../ -\/l log.\+out}
+\item {\ttfamily ./main -\/d ./ -\/r} 
+\end{DoxyEnumerate}

@@ -1,14 +1,14 @@
 # DUPLICATE FILE REMOVER
 
-A command line utility that **recursively** scans the set directory to find exact duplicate files inside all the sub-directories. 
+A command line utility that __recursively__ scans the set directory to find exact duplicate files inside all the sub-directories. 
 The files so found can be listed in an output file. If required the duplicates can also be removed, thereby preserving a single unique file.
 
-**Features:**
+__Features:__
 1. Recursive scan of the set directory.
 2. Generate list of duplicate files.
 3. Scan all files or filter based on file extension.
 
-**Future Plans:**
+__Future Plans:__
 1. Set a recursive scan depth for the set directory.
 2. A way to exclude certain directories.
 3. A way to include only some directories.
@@ -24,7 +24,7 @@ The files so found can be listed in an output file. If required the duplicates c
 
 2. Change directory to src:
 
-    `cd src`
+    `cd Duplicate-File-Remover/src`
 
 3. Build project using Make utility:
 
@@ -35,9 +35,9 @@ The files so found can be listed in an output file. If required the duplicates c
     `./main ...`
 
 ## Testing
-1. From the root directory of the project go to test directory:
+1. From the root directory of the project go to tests directory:
 
-    `cd test`
+    `cd Duplicate-File-Remover/tests`
 
 2. Build tests using Make utility.
 
@@ -51,5 +51,33 @@ You should see _OK_ if all the tests pass and then you can go on to using the pr
 
 
 ## <a name="use">Usage</a>
+1. Use `-d` switch to set the directory to be scanned.
+2. Use `-e` switch to provide a list of extensions to filter the files scanned.
+3. Use `-l` switch to generate an output(log) file. If this switch is not followed by a name/path, then a default file _dupl_file.txt_ is generated in the current directory.
+4. Use `-r` switch to remove the duplicates and keep only one copy.
+5. Use `-h` switch to display this help:
+    
+```
+Usage: ./main -d [DIRECTORY]
+or: ./main -d [DIRECTORY] -e [EXTENSIONS]...
+or: ./main -d [DIRECTORY] -l [OUTFILE]
 
-### Other command line params
+Scan the provided directory and its sub-directories recursively and find duplicates.
+
+Not using either of -l or -r switch is pointless as no action is performed.
+
+-d switch is necessary to set the search directory.
+
+Other switches:
+    -d		provided argument is the directory to be scanned.
+    -e		following arguments treated as extensions.
+    -l		generate file list (default file: "dupl_file.txt").
+    -h		prints this help.
+    -r		remove the duplicates so found.
+```
+> Note: Use `sudo` if required.
+
+## Examples
+1. `./main -d ./ -l -r`
+2. `./main -e png jpg jpeg -d ./../ -l log.out`
+3. `./main -d ./ -r`
