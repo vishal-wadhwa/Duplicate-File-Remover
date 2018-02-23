@@ -207,7 +207,7 @@ bool dfr::file_handler::generate_list(const std::string &out_file)
 			for (file_data &fd : lfd)
 			{
 				of << '\t' << fd.name << ' ' << fd.path
-				   << ' ' << fd.size / 1024. << "kB " << (pos ? "| [TBD]" : "")
+				   << ' ' << fd.size / 1024. << "kB " << (!pos ? "| [Saved]" : "")
 				   << '\n';
 				++pos;
 			}
