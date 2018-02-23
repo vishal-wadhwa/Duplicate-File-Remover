@@ -1,7 +1,11 @@
 # DUPLICATE FILE REMOVER
 
+[GitHub](https://github.com/vishal-wadhwa/Duplicate-File-Remover)
+
 A command line utility that __recursively__ scans the set directory to find exact duplicate files inside all the sub-directories. 
 The files so found can be listed in an output file. If required the duplicates can also be removed, thereby preserving a single unique file.
+
+[![asciicast](https://asciinema.org/a/14.png)](https://asciinema.org/a/14)
 
 __Features:__
 1. Recursive scan of the set directory.
