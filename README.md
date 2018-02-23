@@ -5,7 +5,7 @@
 A command line utility that __recursively__ scans the set directory to find exact duplicate files inside all the sub-directories. 
 The files so found can be listed in an output file. If required the duplicates can also be removed, thereby preserving a single unique file.
 
-[![asciicast](https://asciinema.org/a/14.png)](https://asciinema.org/a/14)
+<a href="https://asciinema.org/a/CgLfUrJvV3If2ifGZNhdDC8iu"><img src="https://asciinema.org/a/CgLfUrJvV3If2ifGZNhdDC8iu.png" width="640"/></a>
 
 __Features:__
 1. Recursive scan of the set directory.
