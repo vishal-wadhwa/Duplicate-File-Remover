@@ -1,0 +1,41 @@
+\hypertarget{classdfr_1_1hash}{}\section{dfr\+:\+:hash Class Reference}
+\label{classdfr_1_1hash}\index{dfr\+::hash@{dfr\+::hash}}
+
+
+{\ttfamily \#include $<$file\+\_\+hash.\+h$>$}
+
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static std\+::string \hyperlink{classdfr_1_1hash_a2243da1899b7a4a670d15f58fafbf6ea}{M\+D5} (const std\+::string \&path, const size\+\_\+t \&B\+U\+F\+F\+E\+R\+\_\+\+L\+E\+N\+G\+TH=1$<$$<$ 15)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A class enapsulating the available hash functions. 
+
+\subsection{Member Function Documentation}
+\index{dfr\+::hash@{dfr\+::hash}!M\+D5@{M\+D5}}
+\index{M\+D5@{M\+D5}!dfr\+::hash@{dfr\+::hash}}
+\subsubsection[{\texorpdfstring{M\+D5(const std\+::string \&path, const size\+\_\+t \&\+B\+U\+F\+F\+E\+R\+\_\+\+L\+E\+N\+G\+T\+H=1$<$$<$ 15)}{MD5(const std::string &path, const size_t &BUFFER_LENGTH=1<< 15)}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::string dfr\+::hash\+::\+M\+D5 (
+\begin{DoxyParamCaption}
+\item[{const std\+::string \&}]{path, }
+\item[{const size\+\_\+t \&}]{B\+U\+F\+F\+E\+R\+\_\+\+L\+E\+N\+G\+TH = {\ttfamily 1~$<$$<$~15}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{classdfr_1_1hash_a2243da1899b7a4a670d15f58fafbf6ea}{}\label{classdfr_1_1hash_a2243da1899b7a4a670d15f58fafbf6ea}
+A public static method. This method computes the M\+D5 hash of file specified in the arguments. File read buffer is initially set to \+\_\+ 1 $<$$<$ 15 \+\_\+ which can be changed. If hash could not be computed an empty string is returned. 
+\begin{DoxyParams}{Parameters}
+{\em path} & Path of the file for which M\+D5 is to be computed. \\
+\hline
+{\em B\+U\+F\+F\+E\+R\+\_\+\+L\+E\+N\+G\+TH} & Buffer size in which file is read. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+M\+D5 hash of the file as {\ttfamily std\+::string}
+\end{DoxyReturn}
+Hash generation function. Uses openssl/md5 to generated hash. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\hyperlink{file__hash_8h}{file\+\_\+hash.\+h}\item 
+src/file\+\_\+hash.\+cpp\end{DoxyCompactItemize}

@@ -1,5 +1,12 @@
 #ifndef FILE_HASH_
 #define FILE_HASH_
+
+/**
+ * @file file_hash.h
+ * This file includes function to computes hash
+ * for the files at specified path.
+ */ 
+
 #include <string>
 
 namespace dfr

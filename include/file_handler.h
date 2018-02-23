@@ -1,6 +1,12 @@
 #ifndef FILE_HANDLER_H_
 #define FILE_HANDLER_H_
 
+/**
+ * @file file_handler.h
+ * This header manipulates file's metadata and 
+ * performs operations over it.
+ */ 
+
 #include <string>
 #include <set>
 #include <list>
@@ -24,9 +30,9 @@ struct file_data
 	/**
 	 * A constructor.
 	 * Constructs a struct type object to store file metadata.
-	 * @param[in] name Name of the file.
-	 * @param[in] size Size of the file.
-	 * @param[in] path Path of the file.
+	 * @param name Name of the file.
+	 * @param size Size of the file.
+	 * @param path Path of the file.
 	 */ 
 	file_data(const std::string &name, const uintmax_t &size, const std::string &path);
 };
@@ -87,7 +93,7 @@ class file_handler
 	 * A public method.
 	 * Function to add the provided extension to the list of extensions.
 	 * The correct format for extension is without the preceding dot('.').
-	 * @param[in] ext Extension for file.
+	 * @param ext Extension for file.
 	 */ 
 	void add_extension(const std::string &ext);
 	

@@ -1,0 +1,61 @@
+A command line utility that {\bfseries recursively} scans the set directory to find exact duplicate files inside all the sub-\/directories. The files so found can be listed in an output file. If required the duplicates can also be removed, thereby preserving a single unique file.
+
+{\bfseries Features\+:}
+\begin{DoxyEnumerate}
+\item Recursive scan of the set directory.
+\item Generate list of duplicate files.
+\item Scan all files or filter based on file extension.
+\end{DoxyEnumerate}
+
+{\bfseries Future Plans\+:}
+\begin{DoxyEnumerate}
+\item Set a recursive scan depth for the set directory.
+\item A way to exclude certain directories.
+\item A way to include only some directories.
+\item Robust error handling for synchronization issues.
+\item Make the program interactive.
+\end{DoxyEnumerate}
+
+\begin{quote}
+Caution\+: As of now, there is no way to select which of the duplicate files will be preserved. The selection happens on the order in which they are loaded into {\ttfamily std\+::map}. The first file is the one which is preserved. \end{quote}
+
+
+\subsection*{Downloading and Building}
+
+
+\begin{DoxyEnumerate}
+\item Clone the project\+:
+
+{\ttfamily git clone \href{https://github.com/vishal-wadhwa/Duplicate-File-Remover.git}{\tt https\+://github.\+com/vishal-\/wadhwa/\+Duplicate-\/\+File-\/\+Remover.\+git}}
+\item Change directory to src\+:
+
+{\ttfamily cd src}
+\item Build project using Make utility\+:
+
+{\ttfamily make main}
+\item Run it (See \href{#use}{\tt Usage})\+:
+
+{\ttfamily ./main ...}
+\end{DoxyEnumerate}
+
+\subsection*{Testing}
+
+
+\begin{DoxyEnumerate}
+\item From the root directory of the project go to test directory\+:
+
+{\ttfamily cd test}
+\item Build tests using Make utility.
+
+{\ttfamily make test}
+\item Run them tests, bruh\+:
+
+{\ttfamily ./test}
+\end{DoxyEnumerate}
+
+You should see {\itshape OK} if all the tests pass and then you can go on to using the program.;)
+
+\subsection*{\label{_use}%
+Usage}
+
+\subsubsection*{Other command line params}
