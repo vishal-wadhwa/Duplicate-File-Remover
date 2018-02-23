@@ -5,6 +5,10 @@
 #include <fstream>
 #include <iomanip>
 
+/**
+ * Hash generation function. 
+ * Uses openssl/md5 to generated hash.
+ */ 
 std::string dfr::hash::MD5(const std::string &path, const size_t &BUFFER_LENGTH)
 {
     std::ifstream fi(path, std::ios::binary);

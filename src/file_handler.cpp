@@ -6,7 +6,7 @@
 #include <functional>
 #include <iomanip>
 #include <queue>
-
+ 
 dfr::file_data::file_data(const std::string &name,
 						  const uintmax_t &size,
 						  const std::string &path) : name(name), path(path), size(size)
@@ -72,7 +72,7 @@ size_t dfr::file_handler::dir_traverse_routine(
 			 const boost::filesystem::path &)> &fx)
 {
 	using namespace boost::filesystem;
-	using dit = directory_iterator;
+	using dit = directory_iterator; ///Alias for directory_iterator.
 
 	size_t curf = 0;
 	path p(directory);
@@ -98,7 +98,6 @@ size_t dfr::file_handler::dir_traverse_routine(
 
 		while (it != dit())
 		{
-
 			const path &curp = it->path();
 			try
 			{
@@ -128,9 +127,11 @@ void dfr::file_handler::init_dir_load()
 	using namespace boost::filesystem;
 	clean();
 	size_t file_ct = 0, upd_inter = 0;
+
+	///lambda for counting the files for progress
 	const auto dum = [](const size_t &curf, const path &curp) {
-		//kinda useless, only to get total_hashed_file_count
-		//suppress compiler warning of unused variable.
+		//kinda useless
+		///suppresses compiler warning for unused variable.
 		(void)curf;
 		(void)curp;
 	};
@@ -144,7 +145,11 @@ void dfr::file_handler::init_dir_load()
 		return;
 	}
 
+	///Updates are printed to standard output in multiples of
+	///cube root of number of files scanned.
 	upd_inter = cbrt(file_ct);
+
+	///lambda for progress update and hash generation.
 	const auto build = [upd_inter, file_ct, this](const size_t &curf, const path &curp) {
 
 #ifndef DEBUG
@@ -161,6 +166,7 @@ void dfr::file_handler::init_dir_load()
 			curp.is_absolute()
 				? "/" + curp.relative_path().string()
 				: curp.relative_path().string());
+				
 		if (!fd.hash.empty())
 		{
 			std::list<file_data> &dt = file_map[fd.hash];
@@ -237,5 +243,6 @@ bool dfr::file_handler::remove_in_place()
 				ok = false;
 			}
 	}
+	clean();
 	return ok;
 }
