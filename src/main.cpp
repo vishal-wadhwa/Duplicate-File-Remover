@@ -104,7 +104,7 @@ int main(int argc, char *argv[])
             q = dfa[q][inp_map[argv[i][1]]];
         else
         {
-            ///Inpput alphabet is a word.
+            ///Input alphabet is a word.
             switch (q)
             {
             case 1:
