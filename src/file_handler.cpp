@@ -195,6 +195,7 @@ bool dfr::file_handler::generate_list(const std::string &out_file)
 		of << "Note: Duplicate files have been clubbed together.\n\n";
 		of << "Total Files Read: " << total_hashed_file_count() << "\n";
 		of << "Distinct File Count: " << distinct_file_count() << "\n";
+		of << "Duplicate File Count: " << total_hashed_file_count() - distinct_file_count() << "\n";		
 		of << "Scanned Directory: " << directory << "\n\n";
 
 		size_t ct = 1;
@@ -202,12 +203,15 @@ bool dfr::file_handler::generate_list(const std::string &out_file)
 		for (auto &dt : file_map)
 		{
 			std::list<file_data> &lfd = dt.second;
+
+			if (lfd.size() == 1) continue;
+
 			of << "File No. " << ct << std::endl;
 			size_t pos = 0;
 			for (file_data &fd : lfd)
 			{
 				of << '\t' << fd.name << ' ' << fd.path
-				   << ' ' << fd.size / 1024. << "kB " << (!pos ? "| [Saved]" : "")
+				   << ' ' << fd.size / 1024. << "kB " << (!pos ? "| [Will be saved]" : "")
 				   << '\n';
 				++pos;
 			}

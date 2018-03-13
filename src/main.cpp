@@ -21,7 +21,7 @@ States:
 
 0 start (S) - final
 1 dth (D) - non-final
-2 lth (L) - final
+2 oth (O) - final
 3 rth (R) - final
 4 eth (E) - non-final
 5 eth_aux - final
@@ -32,7 +32,7 @@ int dfa[7][6];
 std::unordered_map<char, int> inp_map = {{'d', 0},
                                          {'e', 1},
                                          {'h', 2},
-                                         {'l', 3},
+                                         {'o', 3},
                                          {'r', 4}};
 
 void init_dfa()
@@ -100,7 +100,7 @@ int main(int argc, char *argv[])
     dfr::file_handler fh;
     for (i = 1; i < argc; ++i)
     {
-        if (std::regex_match(argv[i], std::regex("-[dhrle]")))
+        if (std::regex_match(argv[i], std::regex("-[dhroe]")))
             q = dfa[q][inp_map[argv[i][1]]];
         else
         {
