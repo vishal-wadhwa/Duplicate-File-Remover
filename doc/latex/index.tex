@@ -2,7 +2,7 @@
 
 A command line utility that {\bfseries recursively} scans the set directory to find exact duplicate files inside all the sub-\/directories. The files so found can be listed in an output file. If required the duplicates can also be removed, thereby preserving a single unique file.
 
-\href{https://asciinema.org/a/14}{\tt }
+\href{https://asciinema.org/a/CgLfUrJvV3If2ifGZNhdDC8iu?autoplay=1}{\tt }
 
 {\bfseries Features\+:}
 \begin{DoxyEnumerate}
@@ -79,7 +79,7 @@ Usage}
 \begin{DoxyEnumerate}
 \item Use {\ttfamily -\/d} switch to set the directory to be scanned.
 \item Use {\ttfamily -\/e} switch to provide a list of extensions to filter the files scanned.
-\item Use {\ttfamily -\/l} switch to generate an output(log) file. If this switch is not followed by a name/path, then a default file {\itshape dupl\+\_\+file.\+txt} is generated in the current directory.
+\item Use {\ttfamily -\/o} switch to generate an output(log) file. If this switch is not followed by a name/path, then a default file {\itshape dupl\+\_\+file.\+txt} is generated in the current directory.
 \item Use {\ttfamily -\/r} switch to remove the duplicates and keep only one copy.
 \item Use {\ttfamily -\/h} switch to display this help\+:
 \end{DoxyEnumerate}
@@ -88,18 +88,18 @@ Usage}
 \begin{DoxyCode}
 1 Usage: ./main -d [DIRECTORY]
 2 or: ./main -d [DIRECTORY] -e [EXTENSIONS]...
-3 or: ./main -d [DIRECTORY] -l [OUTFILE]
+3 or: ./main -d [DIRECTORY] -o [OUTFILE]
 4 
 5 Scan the provided directory and its sub-directories recursively and find duplicates.
 6 
-7 Not using either of -l or -r switch is pointless as no action is performed.
+7 Not using either of -o or -r switch is pointless as no action is performed.
 8 
 9 -d switch is necessary to set the search directory.
 10 
 11 Other switches:
 12     -d      provided argument is the directory to be scanned.
 13     -e      following arguments treated as extensions.
-14     -l      generate file list (default file: "dupl\_file.txt").
+14     -o      generate file list (default file: "dupl\_file.txt").
 15     -h      prints this help.
 16     -r      remove the duplicates so found.
 \end{DoxyCode}
@@ -111,7 +111,7 @@ Note\+: Use {\ttfamily sudo} if required. \end{quote}
 
 
 \begin{DoxyEnumerate}
-\item {\ttfamily ./main -\/d ./ -\/l -\/r}
-\item {\ttfamily ./main -\/e png jpg jpeg -\/d ./../ -\/l log.\+out}
+\item {\ttfamily ./main -\/d ./ -\/o -\/r}
+\item {\ttfamily ./main -\/e png jpg jpeg -\/d ./../ -\/o log.\+out}
 \item {\ttfamily ./main -\/d ./ -\/r} 
 \end{DoxyEnumerate}

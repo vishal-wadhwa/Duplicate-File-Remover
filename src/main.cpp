@@ -13,7 +13,7 @@ Input alphabets:
 0 - -d
 1 - -e
 2 - -h
-3 - -l
+3 - -o
 4 - -r
 5 - word
 
@@ -72,10 +72,10 @@ void usage_msg(char *filename)
 {
     std::cout << "\nUsage: " << filename << " -d [DIRECTORY]\n";
     std::cout << "  or: " << filename << " -d [DIRECTORY] -e [EXTENSIONS]...\n";
-    std::cout << "  or: " << filename << " -d [DIRECTORY] -l [OUTFILE]\n\n";
+    std::cout << "  or: " << filename << " -d [DIRECTORY] -o [OUTFILE]\n\n";
     std::cout << "Scan the provided directory and its sub-directories recursively and find duplicates.\n\n";
 
-    std::cout << "Not using either of -l or -r switch is pointless as no action is performed.\n\n";
+    std::cout << "Not using either of -o or -r switch is pointless as no action is performed.\n\n";
     std::cout << "-d switch is necessary to set the search directory.\n\n";
 
     std::cout << "Other switches:\n";
@@ -83,7 +83,7 @@ void usage_msg(char *filename)
               << "provided argument is the directory to be scanned.\n";
     std::cout << "    -e\t\t"
               << "following arguments treated as extensions.\n";
-    std::cout << "    -l\t\t"
+    std::cout << "    -o\t\t"
               << "generate file list (default file: \"dupl_file.txt\").\n";
     std::cout << "    -h\t\t"
               << "prints this help.\n";

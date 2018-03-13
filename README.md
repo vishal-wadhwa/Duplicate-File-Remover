@@ -66,31 +66,31 @@ You should see _OK_ if all the tests pass and then you can go on to using the pr
 ## <a name="use">Usage</a>
 1. Use `-d` switch to set the directory to be scanned.
 2. Use `-e` switch to provide a list of extensions to filter the files scanned.
-3. Use `-l` switch to generate an output(log) file. If this switch is not followed by a name/path, then a default file _dupl_file.txt_ is generated in the current directory.
+3. Use `-o` switch to generate an output(log) file. If this switch is not followed by a name/path, then a default file _dupl_file.txt_ is generated in the current directory.
 4. Use `-r` switch to remove the duplicates and keep only one copy.
 5. Use `-h` switch to display this help:
     
 ```
 Usage: ./main -d [DIRECTORY]
 or: ./main -d [DIRECTORY] -e [EXTENSIONS]...
-or: ./main -d [DIRECTORY] -l [OUTFILE]
+or: ./main -d [DIRECTORY] -o [OUTFILE]
 
 Scan the provided directory and its sub-directories recursively and find duplicates.
 
-Not using either of -l or -r switch is pointless as no action is performed.
+Not using either of -o or -r switch is pointless as no action is performed.
 
 -d switch is necessary to set the search directory.
 
 Other switches:
     -d		provided argument is the directory to be scanned.
     -e		following arguments treated as extensions.
-    -l		generate file list (default file: "dupl_file.txt").
+    -o		generate file list (default file: "dupl_file.txt").
     -h		prints this help.
     -r		remove the duplicates so found.
 ```
 > Note: Use `sudo` if required.
 
 ## Examples
-1. `./main -d ./ -l -r`
-2. `./main -e png jpg jpeg -d ./../ -l log.out`
+1. `./main -d ./ -o -r`
+2. `./main -e png jpg jpeg -d ./../ -o log.out`
 3. `./main -d ./ -r`
