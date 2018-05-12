@@ -6,7 +6,7 @@
 #include <functional>
 #include <iomanip>
 #include <queue>
- 
+
 dfr::file_data::file_data(const std::string &name,
 						  const uintmax_t &size,
 						  const std::string &path) : name(name), path(path), size(size)
@@ -39,7 +39,8 @@ size_t dfr::file_handler::distinct_file_count()
 	return file_map.size();
 }
 
-void dfr::file_handler::clean() {
+void dfr::file_handler::clean()
+{
 	file_map.clear();
 	hashed_file_ct = 0;
 }
@@ -166,7 +167,7 @@ void dfr::file_handler::init_dir_load()
 			curp.is_absolute()
 				? "/" + curp.relative_path().string()
 				: curp.relative_path().string());
-				
+
 		if (!fd.hash.empty())
 		{
 			std::list<file_data> &dt = file_map[fd.hash];
@@ -195,24 +196,24 @@ bool dfr::file_handler::generate_list(const std::string &out_file)
 		of << "Note: Duplicate files have been clubbed together.\n\n";
 		of << "Total Files Read: " << total_hashed_file_count() << "\n";
 		of << "Distinct File Count: " << distinct_file_count() << "\n";
-		of << "Duplicate File Count: " << total_hashed_file_count() - distinct_file_count() << "\n";		
+		of << "Duplicate File Count: " << total_hashed_file_count() - distinct_file_count() << "\n";
 		of << "Scanned Directory: " << directory << "\n\n";
-
+		of << "Note: First file in each set of duplicates will be saved.\n\n";
 		size_t ct = 1;
 		of << std::fixed << std::setprecision(3);
-		for (auto &dt : file_map)
+		for (const auto &dt : file_map)
 		{
-			std::list<file_data> &lfd = dt.second;
+			const std::list<file_data> &lfd = dt.second;
 
-			if (lfd.size() == 1) continue;
+			if (lfd.size() == 1)
+				continue;
 
 			of << "File No. " << ct << std::endl;
 			size_t pos = 0;
-			for (file_data &fd : lfd)
+			for (const file_data &fd : lfd)
 			{
 				of << '\t' << fd.name << ' ' << fd.path
-				   << ' ' << fd.size / 1024. << "kB " << (!pos ? "| [Will be saved]" : "")
-				   << '\n';
+				   << ' ' << fd.size / 1024. << "kB " << '\n';
 				++pos;
 			}
 

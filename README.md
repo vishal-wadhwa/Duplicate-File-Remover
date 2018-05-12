@@ -5,7 +5,9 @@
 A command line utility that __recursively__ scans the set directory to find exact duplicate files inside all the sub-directories. 
 The files so found can be listed in an output file. If required the duplicates can also be removed, thereby preserving a single unique file.
 
-<a href="https://asciinema.org/a/CgLfUrJvV3If2ifGZNhdDC8iu?autoplay=1"><img src="https://asciinema.org/a/CgLfUrJvV3If2ifGZNhdDC8iu.png" width="640"/></a>
+<!-- <a href="https://asciinema.org/a/t2LGSwFmtDOSkqyJecVbTveKN?autoplay=1"><img src="https://asciinema.org/a/t2LGSwFmtDOSkqyJecVbTveKN.png" width="640"/></a> -->
+
+[![A short snapshot of usage of this tool.](https://asciinema.org/a/t2LGSwFmtDOSkqyJecVbTveKN.png =640x)](https://asciinema.org/a/t2LGSwFmtDOSkqyJecVbTveKN?autoplay=1)
 
 __Features:__
 1. Recursive scan of the set directory.

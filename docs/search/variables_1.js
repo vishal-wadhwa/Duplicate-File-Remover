@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['path',['path',['../structdfr_1_1file__data.html#a49e1a762af0cfc8dd25669a1c17340da',1,'dfr::file_data']]]
+  ['name',['name',['../structdfr_1_1file__data.html#a9dd5c141e4c286b7443a1c08e656999f',1,'dfr::file_data']]]
 ];

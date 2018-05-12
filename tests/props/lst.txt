@@ -4,49 +4,13 @@ Note: Duplicate files have been clubbed together.
 
 Total Files Read: 16
 Distinct File Count: 14
+Duplicate File Count: 2
 Scanned Directory: .
 
+Note: First file in each set of duplicates will be saved.
+
 File No. 1
-	test.o ./obj/test.o 83.141kB 
-
-File No. 2
 	a.txt ./props/a.txt 0.004kB 
-	b.txt ./props/b.txt 0.004kB | [TBD]
-	c.txt ./props/c.txt 0.004kB | [TBD]
-
-File No. 3
-	unit_tests.h ./unit_tests.h 0.980kB 
-
-File No. 4
-	blah.blah ./props/blah.blah 0.027kB 
-
-File No. 5
-	test ./test 274.703kB 
-
-File No. 6
-	abc ./props/abc 0.237kB 
-
-File No. 7
-	lst.txt ./props/lst.txt 0.884kB 
-
-File No. 8
-	unit_tests.cpp ./unit_tests.cpp 3.489kB 
-
-File No. 9
-	file_handler.o ./obj/file_handler.o 315.641kB 
-
-File No. 10
-	test.cpp ./test.cpp 0.659kB 
-
-File No. 11
-	blank.file ./props/blank.file 0.000kB 
-
-File No. 12
-	Makefile ./Makefile 0.900kB 
-
-File No. 13
-	unit_tests.o ./obj/unit_tests.o 234.875kB 
-
-File No. 14
-	file_hash.o ./obj/file_hash.o 9.117kB 
+	b.txt ./props/b.txt 0.004kB 
+	c.txt ./props/c.txt 0.004kB 
 

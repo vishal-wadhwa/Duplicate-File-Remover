@@ -22,10 +22,14 @@ namespace dfr
  */
 struct file_data
 {
-	std::string name; ///name of the file.
-	std::string path; ///path of the file.
-	std::string hash; ///hash of the file.
-	uintmax_t size; ///size of the file.
+	///name of the file.
+	std::string name; 
+	///path of the file.
+	std::string path;
+	///hash of the file. 
+	std::string hash;
+	///size of the file in bytes. 
+	uintmax_t size; 
 
 	/**
 	 * A constructor.
