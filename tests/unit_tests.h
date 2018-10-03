@@ -6,7 +6,7 @@
 namespace dfr
 {
 class file_handler_test : public CppUnit::TestFixture
-{ 
+{
     CPPUNIT_TEST_SUITE(file_handler_test);
     CPPUNIT_TEST(invalid_dir_test);
     CPPUNIT_TEST(list_generate_test);
@@ -32,6 +32,7 @@ class file_handler_test : public CppUnit::TestFixture
 class file_hash_test : public CppUnit::TestFixture {
   CPPUNIT_TEST_SUITE(file_hash_test);
   CPPUNIT_TEST(md5_hash_test);
+  CPPUNIT_TEST(sha256_hash_test);
   CPPUNIT_TEST_SUITE_END();
 public:
   file_hash_test();
@@ -39,6 +40,7 @@ public:
   void tearDown();
 
   void md5_hash_test();
+  void sha256_hash_test();
 };
 }
 #endif

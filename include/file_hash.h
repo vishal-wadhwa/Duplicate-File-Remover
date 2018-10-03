@@ -5,7 +5,7 @@
  * @file file_hash.h
  * This file includes function to computes hash
  * for the files at specified path.
- */ 
+ */
 
 #include <string>
 
@@ -28,6 +28,7 @@ public:
      * @result MD5 hash of the file as <code>std::string</code>
      */
   static std::string MD5(const std::string &path, const size_t &BUFFER_LENGTH = 1 << 15);
+  static std::string SHA256(const std::string &path, const size_t &BUFFER_LENGTH = 1 << 15);
 };
 }
 

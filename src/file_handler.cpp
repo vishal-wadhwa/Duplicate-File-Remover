@@ -6,12 +6,13 @@
 #include <functional>
 #include <iomanip>
 #include <queue>
+#include<math.h>
 
 dfr::file_data::file_data(const std::string &name,
 						  const uintmax_t &size,
 						  const std::string &path) : name(name), path(path), size(size)
 {
-	hash = dfr::hash::MD5(path);
+	hash = dfr::hash::SHA256(path);
 }
 
 dfr::file_handler::file_handler(const std::string &path) : directory(path), hashed_file_ct(0) {}

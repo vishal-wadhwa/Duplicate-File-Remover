@@ -5,6 +5,7 @@
 #include <unordered_map>
 #include <string>
 #include <fstream>
+#include<iostream>
 
 dfr::file_handler_test::file_handler_test() {}
 void dfr::file_handler_test::setUp()
@@ -30,7 +31,7 @@ void dfr::file_handler_test::setUp()
 void dfr::file_handler_test::tearDown() {
     remove("./props/a.txt");
     remove("./props/b.txt");
-    remove("./props/c.txt");    
+    remove("./props/c.txt");
 }
 
 void dfr::file_handler_test::invalid_dir_test()
@@ -86,12 +87,12 @@ void dfr::file_handler_test::filter_test() {
     fho.add_extension("cpp");
     fho.load_directory();
     CPPUNIT_ASSERT_EQUAL((size_t)2, fho.total_hashed_file_count());
-    
+
     file_handler fho1;
     fho1.set_directory(".");
     fho1.add_extension(".cpp");
     fho1.load_directory();
-    CPPUNIT_ASSERT_EQUAL((size_t)0, fho1.total_hashed_file_count());    
+    CPPUNIT_ASSERT_EQUAL((size_t)0, fho1.total_hashed_file_count());
 }
 
 void dfr::file_handler_test::clean_test() {
@@ -129,3 +130,6 @@ void dfr::file_hash_test::md5_hash_test() {
     CPPUNIT_ASSERT_EQUAL(std::string(""), dfr::hash::MD5("non_existent_dir"));
 }
 
+void dfr::file_hash_test::sha256_hash_test() {
+    CPPUNIT_ASSERT_EQUAL(std::string(""), dfr::hash::SHA256("non_existent_dir"));
+}
