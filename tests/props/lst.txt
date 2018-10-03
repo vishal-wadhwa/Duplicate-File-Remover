@@ -10,7 +10,7 @@ Scanned Directory: .
 Note: First file in each set of duplicates will be saved.
 
 File No. 1
-	a.txt ./props/a.txt 0.004kB 
-	b.txt ./props/b.txt 0.004kB 
 	c.txt ./props/c.txt 0.004kB 
+	b.txt ./props/b.txt 0.004kB 
+	a.txt ./props/a.txt 0.004kB 
 

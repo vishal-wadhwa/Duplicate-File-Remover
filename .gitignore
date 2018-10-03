@@ -1,1 +1,5 @@
 .vscode
+tests/obj/*
+src/obj/*
+src/main
+tests/test

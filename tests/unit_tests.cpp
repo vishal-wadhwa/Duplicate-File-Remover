@@ -30,7 +30,7 @@ void dfr::file_handler_test::setUp()
 void dfr::file_handler_test::tearDown() {
     remove("./props/a.txt");
     remove("./props/b.txt");
-    remove("./props/c.txt");    
+    remove("./props/c.txt");
 }
 
 void dfr::file_handler_test::invalid_dir_test()
@@ -86,12 +86,12 @@ void dfr::file_handler_test::filter_test() {
     fho.add_extension("cpp");
     fho.load_directory();
     CPPUNIT_ASSERT_EQUAL((size_t)2, fho.total_hashed_file_count());
-    
+
     file_handler fho1;
     fho1.set_directory(".");
     fho1.add_extension(".cpp");
     fho1.load_directory();
-    CPPUNIT_ASSERT_EQUAL((size_t)0, fho1.total_hashed_file_count());    
+    CPPUNIT_ASSERT_EQUAL((size_t)0, fho1.total_hashed_file_count());
 }
 
 void dfr::file_handler_test::clean_test() {
@@ -129,3 +129,8 @@ void dfr::file_hash_test::md5_hash_test() {
     CPPUNIT_ASSERT_EQUAL(std::string(""), dfr::hash::MD5("non_existent_dir"));
 }
 
+void dfr::file_hash_test::sha256_hash_test() {
+    CPPUNIT_ASSERT_EQUAL(std::string("e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"), dfr::hash::SHA256("props/blank.file"));
+    CPPUNIT_ASSERT_EQUAL(std::string("3de38852cd769935199171c3da3121084c0c905dd29148e70f0515b007682120"), dfr::hash::SHA256("props/blah.blah"));
+    CPPUNIT_ASSERT_EQUAL(std::string(""), dfr::hash::SHA256("non_existent_dir"));
+}
