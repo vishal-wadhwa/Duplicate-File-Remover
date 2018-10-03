@@ -80,6 +80,7 @@ std::string dfr::hash::SHA256(const std::string &path, const size_t &BUFFER_LENG
     sout << std::hex << std::setfill('0');
     for (auto c : result)
         sout << std::setw(2) << (int)c;
+
     fi.close();
     delete buffer;
     return sout.str();

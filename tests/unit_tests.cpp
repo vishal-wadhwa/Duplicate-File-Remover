@@ -5,7 +5,6 @@
 #include <unordered_map>
 #include <string>
 #include <fstream>
-#include<iostream>
 
 dfr::file_handler_test::file_handler_test() {}
 void dfr::file_handler_test::setUp()
@@ -131,5 +130,7 @@ void dfr::file_hash_test::md5_hash_test() {
 }
 
 void dfr::file_hash_test::sha256_hash_test() {
+    CPPUNIT_ASSERT_EQUAL(std::string("e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"), dfr::hash::SHA256("props/blank.file"));
+    CPPUNIT_ASSERT_EQUAL(std::string("3de38852cd769935199171c3da3121084c0c905dd29148e70f0515b007682120"), dfr::hash::SHA256("props/blah.blah"));
     CPPUNIT_ASSERT_EQUAL(std::string(""), dfr::hash::SHA256("non_existent_dir"));
 }
