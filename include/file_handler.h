@@ -49,7 +49,7 @@ struct file_data
  */ 
 class file_handler
 {
-	///A hashmap that maps list of files against their hash values(MD5).
+	///A hashmap that maps list of files against their hash values.
 	std::map<std::string, std::list<file_data>> file_map; 
 	
 	///The directory to be scanned.

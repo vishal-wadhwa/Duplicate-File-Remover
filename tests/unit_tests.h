@@ -44,9 +44,3 @@ public:
 };
 }
 #endif
-
-// class unit_tests
-// {
-//   public:
-// 	//test md5 somehow
-// };

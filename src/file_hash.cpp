@@ -8,7 +8,7 @@
 
 /**
  * Hash generation function.
- * Uses openssl/md5 to generated hash.
+ * Uses openssl/md5 to generate hash.
  */
 std::string dfr::hash::MD5(const std::string &path, const size_t &BUFFER_LENGTH)
 {
@@ -48,7 +48,7 @@ std::string dfr::hash::MD5(const std::string &path, const size_t &BUFFER_LENGTH)
 
 /**
  * Hash generation function.
- * Uses openssl/sha256 to generated hash.
+ * Uses openssl/sha256 to generate hash.
  */
 std::string dfr::hash::SHA256(const std::string &path, const size_t &BUFFER_LENGTH)
 {
