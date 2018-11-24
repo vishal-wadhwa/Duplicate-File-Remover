@@ -6,7 +6,7 @@
 #include <functional>
 #include <iomanip>
 #include <queue>
-#include<cmath>
+#include <cmath>
 
 dfr::file_data::file_data(const std::string &name,
 						  const uintmax_t &size,
